@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Ship {
+  id BigInt @id @default(autoincrement())
+  authors Participant[]
+  votes Int @default(0)
+  imageUrl String?
+  link String?
+  title String
+}
+
+model Prompt {
+  id BigInt @id @default(autoincrement())
+  author Participant @relation(fields: [authorEmail], references: [email])
+  authorEmail String
+  prompt String
+  votes Int @default(0)
+}
+
+model Participant {
+  id      BigInt   @id @default(autoincrement())
+  email   String   @unique
+  name    String
+  pronouns String?
+  dob DateTime
+  dietaryRestrictions String?
+  technicalSkill technicalSkill
+  tShirtSize tShirtSize
+  workshop Boolean
+  vaccineStatus Boolean
+  ships Ship[]
+  prompts Prompt[]
+}
+
+enum technicalSkill {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum tShirtSize {
+  AXS
+  AS
+  AM
+  AL
+  AXL
+}
