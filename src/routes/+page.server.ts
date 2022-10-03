@@ -1,10 +1,9 @@
 import { Prisma, PrismaClient, type Participant } from '@prisma/client'
 import { error, invalid, redirect } from '@sveltejs/kit';
 import postmark from "postmark"
-import * as dotenv from "dotenv"
+import { env } from '$env/dynamic/private';
 const prisma = new PrismaClient()
-dotenv.config()
-const client = new postmark.ServerClient(process.env["POSTMARK_TOKEN"] ?? "");
+const client = new postmark.ServerClient(env["POSTMARK_TOKEN"] ?? "");
 
 
 export const actions = {
