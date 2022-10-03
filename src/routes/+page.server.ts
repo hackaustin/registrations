@@ -101,6 +101,8 @@ export const actions = {
             "MessageStream": "outbound"
         });
 
+	console.log(client)
+
 
         throw redirect(302, "/success")
     }
