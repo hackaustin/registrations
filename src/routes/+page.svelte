@@ -101,6 +101,8 @@
 			
 			<InputField invalid={invalid(form?.missing, "vaccineStatus")} name="vaccineStatus" type="checkbox" label="I am vaccinated! (you will be required to present proof)" required={true}></InputField>
 			
+			<br>
+	
 			<InputField invalid={invalid(form?.missing, "technicalSkill")} label="How technical are you? (Beginners are totally welcome! :D)" type="select" name="technicalSkill" required={true}>
 					<option value="BEGINNER">Beginner - No coding experience or just started learning</option>
 					<option value="INTERMEDIATE">Intermediate - I've taken some CS class or have worked on small projects</option>
@@ -109,6 +111,7 @@
 			
 			<InputField invalid={invalid(form?.missing, "workshop")} name="workshop" label="Would you like to host a workshop?" type="checkbox"></InputField>
 	
+			<br>
 			<InputField invalid={invalid(form?.missing, "dietaryRestrictions")}  name="dietaryRestrictions" label="Dietary Restrictions" type="textarea"></InputField>
 	
 			
