@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
@@ -29,6 +29,42 @@ model Prompt {
   votes Int @default(0)
 }
 
+model Waiver {
+  id BigInt @id @default(autoincrement())
+  
+  participant Participant @relation(fields: [participantName, participantEmail, participantDob, parentName, parentEmail, parentPhone, street, city, state, zip ], references: [name, email, dob, parentName, parentEmail, parentPhone, street, city, state, zip ] )
+  participantName String
+  participantEmail String @unique
+  participantPhone String
+  participantDob String
+  
+  participantInitials String
+  participantSignature String
+  
+  parentName String
+  parentEmail String
+  parentPhone String
+  parentSignature String
+  
+  agreement String
+  
+}
+
+model Parent {
+  name String
+  email String @unique
+  phone String
+  participant Participant
+}
+
+model Address {
+  participant Participant @relation(fields: [name, email], references: [name, email])
+  street String
+  city String
+  state String
+  zip String
+}
+
 model Participant {
   id      BigInt   @id @default(autoincrement())
   email   String   @unique
@@ -42,6 +78,16 @@ model Participant {
   vaccineStatus Boolean
   ships Ship[]
   prompts Prompt[]
+  waiver Waiver?
+  
+  phone String?
+  parent Parent? @relation(fields: [parentName, parentEmail, parentPhone], references: [name, email, phone])
+  
+  parentName String?
+  parentPhone String?
+  parentEmail String?
+  
+  address Address?
 }
 
 enum technicalSkill {
