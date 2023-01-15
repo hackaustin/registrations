@@ -1,3 +1,4 @@
+<--
 <script async lang="ts">
 
 	import { enhance } from '$app/forms';
@@ -42,6 +43,8 @@
 	
 </script>
 
+-->
+
 <!-- svelte-ignore missing-declaration -->
 <!-- svelte-ignore missing-declaration -->
 <svelte:head>
@@ -75,7 +78,10 @@
 	</h1>
 </div>
 
+<h1> Hack Austin has concluded </h1>
+<h2> Sign up <a href="https://form.typeform.com/to/TVIkfLtK">here</a> for information and updates </h2>
 
+<!--
 <form method="POST" id="form" use:enhance>
 			<InputField name="name" invalid={invalid(form?.missing, "name")} type="text" label="Name"></InputField>
 			
@@ -118,6 +124,8 @@
 			<input type="submit" value="Register!">	
 			
 		</form>
+
+-->
 
 <style>
 	@import url("https://cdn.simplecss.org/simple.min.css");
